@@ -9,10 +9,11 @@ import pymysql as sql
 connection = sql.connect(host='localhost', user='root', password='pass')
 cursor = connection.cursor()
 
+cursor.execute("DROP DATABASE DB;")
 cursor.execute("CREATE DATABASE DB;")
 cursor.execute("USE DB;")
 cursor.execute("CREATE TABLE Marks ("
-               "Roll INT PRIMARY KEY."
+               "Roll INT PRIMARY KEY,"
                "Name CHAR(10) NOT NULL,"
                "Marks INT NOT NULL"
                ");")
@@ -35,6 +36,7 @@ cursor.execute("DELETE FROM Marks"
                " WHERE Marks < 50;")
 
 print("OUTPUT ----------------")
+cursor.execute("SELECT * FROM Marks")
 data = cursor.fetchall()
 for line in data:
     print(line)
